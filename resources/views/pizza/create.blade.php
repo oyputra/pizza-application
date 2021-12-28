@@ -13,21 +13,22 @@
                         <a href="" class="list-group-item list-group-item-action">Create</a>
                     </ul>
                 </div>
+                <div class="card-body">
+                    @if (count($errors) > 0)
+                        <div class="alert alert-danger">
+                            @foreach ($errors->all() as $error)
+                                <p>{{ $error }}</p>
+                            @endforeach
+                        </div>
+                    @endif
+                </div>
             </div>
         </div>
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header">{{ __('Pizza') }}</div>
 
-                @if (count($errors) > 0)
-                    <div class="alert alert-danger">
-                        @foreach ($errors->all() as $error)
-                            <p>{{ $error }}</p>
-                        @endforeach
-                    </div>
-                @endif
-
-                <form action="{{ route('pizza.store') }}" method="post">
+                <form action="{{ route('pizza.store') }}" method="post" enctype="multipart/form-data">
                 @csrf
                 
                     <div class="card-body d-grid gap-3">
