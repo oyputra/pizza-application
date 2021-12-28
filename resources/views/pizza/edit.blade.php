@@ -3,54 +3,44 @@
 @section('content')
 <div class="container">
     <div class="row g-3 justify-content-center">
-        <div class="col-md-2">
-            <div class="card">
-                <div class="card-header">{{ __('Menu') }}</div>
-
-                <div class="card-body">
-                    <ul class="list-group">
-                        <a href="{{ route('pizza.index') }}" class="list-group-item list-group-item-action">View</a>
-                        <a href="{{ route('pizza.create') }}" class="list-group-item list-group-item-action">Create</a>
-                    </ul>
-                </div>
-                <div class="card-body">
-                    @if (count($errors) > 0)
-                        <div class="alert alert-danger">
-                            @foreach ($errors->all() as $error)
-                                <p>{{ $error }}</p>
-                            @endforeach
-                        </div>
-                    @endif
-                </div>
+        <div class="col-md-8">
+            
+            <div class="card-body">
+                @if (count($errors) > 0)
+                    <div class="alert alert-danger">
+                        @foreach ($errors->all() as $error)
+                            <p>{{ $error }}</p>
+                        @endforeach
+                    </div>
+                @endif
             </div>
-        </div>
-        <div class="col-md-10">
-            <div class="card">
-                <div class="card-header">{{ __('Pizza') }}</div>
 
-                <form action="{{ route('pizza.store') }}" method="post" enctype="multipart/form-data">
+            <div class="card">
+                <div class="card-header">{{ __('Edit Pizza') }}</div>
+
+                <form action="{{ route('pizza.update', $pizza->id) }}" method="post" enctype="multipart/form-data">
                 @csrf
-                
+                @method('PUT')
                     <div class="card-body d-grid gap-3">
                         <div class="form-group">
                             <label for="name">Name of Pizza</label>
-                            <input type="text" class="form-control" name="name" placeholder="name of pizza">
+                            <input type="text" class="form-control" name="name" placeholder="name of pizza" value="{{ $pizza->name }}">
                         </div>
                         <div class="form-group">
                             <label for="description">Description of Pizza</label>
-                            <textarea class="form-control" name="description"></textarea>
+                            <textarea class="form-control" name="description">{{ $pizza->description }}</textarea>
                         </div>
                         <div class="form-inline">
                             <label>Pizza price ($)</label>
                             <div class="row g-3">
                                 <div class="col">
-                                    <input type="number" name="small_pizza_price" class="form-control" placeholder="small pizza price">
+                                    <input type="number" name="small_pizza_price" class="form-control" placeholder="small pizza price" value="{{ $pizza->small_pizza_price }}">
                                 </div>
                                 <div class="col">
-                                    <input type="number" name="medium_pizza_price" class="form-control" placeholder="medium pizza price">
+                                    <input type="number" name="medium_pizza_price" class="form-control" placeholder="medium pizza price" value="{{ $pizza->medium_pizza_price }}">
                                 </div>
                                 <div class="col">
-                                    <input type="number" name="large_pizza_price" class="form-control" placeholder="large pizza price">
+                                    <input type="number" name="large_pizza_price" class="form-control" placeholder="large pizza price" value="{{ $pizza->large_pizza_price }}">
                                 </div>
                             </div>
                         </div>
@@ -66,6 +56,7 @@
                         <div class="form-group">
                             <label>Image</label>
                             <input type="file" class="form-control" name="image">
+                            <img src="{{ Storage::url($pizza->image) }}" width="80">
                         </div>
                         <div class="form-group">
                             <button type="submit" class="btn btn-primary">Save</button>
