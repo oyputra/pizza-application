@@ -15,6 +15,7 @@
                            <input type="submit" value="Nonvegetarian" name="category" class="list-group-item list-group-item-action">
                            <input type="submit" value="Traditional" name="category" class="list-group-item list-group-item-action">
                        </form>
+                       <p class="mx-auto">Result: {{ count($pizzas) }} pizza</p>
                     </ul>
                 </div>
             </div>
