@@ -11,6 +11,7 @@
                     <ul class="list-group">
                         <a href="{{ route('pizza.index') }}" class="list-group-item list-group-item-action">View</a>
                         <a href="{{ route('pizza.create') }}" class="list-group-item list-group-item-action">Create</a>
+                        <a href="{{ route('user.order') }}" class="list-group-item list-group-item-action">User Order</a>
                     </ul>
                 </div>
                 <div class="card-body">
@@ -44,13 +45,13 @@
                             <label>Pizza price ($)</label>
                             <div class="row g-3">
                                 <div class="col">
-                                    <input type="number" name="small_pizza_price" class="form-control" placeholder="small pizza price">
+                                    <input type="text" name="small_pizza_price" class="form-control" placeholder="small pizza price">
                                 </div>
                                 <div class="col">
-                                    <input type="number" name="medium_pizza_price" class="form-control" placeholder="medium pizza price">
+                                    <input type="text" name="medium_pizza_price" class="form-control" placeholder="medium pizza price">
                                 </div>
                                 <div class="col">
-                                    <input type="number" name="large_pizza_price" class="form-control" placeholder="large pizza price">
+                                    <input type="text" name="large_pizza_price" class="form-control" placeholder="large pizza price">
                                 </div>
                             </div>
                         </div>
